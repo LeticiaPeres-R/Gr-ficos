@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gráficos</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body style="
+    font-family: Arial;
+    background: #f5f5f5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    margin: 0;
+">
+
+    <div style="
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+    ">
+
+        <div style="
+            width: 600px;
+            height: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        ">
+            <canvas id="graficoLinha"></canvas>
+        </div>
+
+        <div style="
+            width: 600px;
+            height: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        ">
+            <canvas id="graficoBarra"></canvas>
+        </div>
+
+    </div>
+
+    <script>
+        const ctxLinha = document.getElementById('graficoLinha');
+
+        new Chart(ctxLinha, {
+            type: 'line',
+            data: {
+                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                datasets: [
+                    {
+                        label: 'Temperatura (°C)',
+                        data: [30, 29, 28, 25, 22, 23],
+                        borderColor: '#FF9EB6',
+                        backgroundColor: 'rgba(255, 158, 182, 0.2)',
+                        tension: 0.4,
+                        pointRadius: 5
+                    },
+                    {
+                        label: 'Umidade (%)',
+                        data: [80, 82, 80, 85, 80, 83],
+                        borderColor: '#8EB6FF',
+                        backgroundColor: 'rgba(142, 182, 255, 0.2)',
+                        tension: 0.4,
+                        pointRadius: 5
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Temperatura e Umidade ao longo do dia'
+                    }
+                }
+            }
+        });
+        const ctxBarra = document.getElementById('graficoBarra');
+
+        new Chart(ctxBarra, {
+            type: 'bar',
+            data: {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+                datasets: [
+                    {
+                        label: 'Temperatura Média (°C)',
+                        data: [22, 24, 27, 23, 20, 18],
+                        backgroundColor: '#FF9EB6'
+                    },
+                    {
+                        label: 'Umidade Média (%)',
+                        data: [90, 89, 93, 87, 88, 82],
+                        backgroundColor: '#8EB6FF'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Temperatura e Umidade Média por Mês'
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
